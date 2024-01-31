@@ -183,7 +183,7 @@ const [lpPriceData, setLPPriceData] = useState(0);
       </Grid>
       <Grid container spacing={5} sx={{mt: 5, p: 3}}>
 
-      <Grid xs={12} md={8}>
+      <Grid xs={12} md={6} lg={6}>
         <Box sx={{height: 400}}> 
         <ResponsiveContainer width="100%" height="100%">
         <AreaChart
@@ -208,7 +208,7 @@ const [lpPriceData, setLPPriceData] = useState(0);
    
         </Grid>
 
-        <Grid xs={12} md={4}>
+        <Grid xs={12} md={6} lg={6}>
         <Box sx={{ bgcolor: 'background.paper', width: 500 , height: 300}}>
       <AppBar position="static">
         <Tabs
