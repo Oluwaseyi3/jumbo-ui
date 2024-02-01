@@ -1,14 +1,9 @@
-import React from 'react';
+import React, {useEffect , useState, useRef } from 'react';
 import {Grid} from "@mui/material";
-import Properties from "../../../shared/metrics/Properties";
-import Cities from "../../../shared/metrics/Cities";
-import VisitsStatistics from "../../../shared/metrics/VisitsStatistics";
-import QueriesStatistics from "../../../shared/metrics/QueriesStatistics";
-import PopularAgents from "../../../shared/widgets/PopularAgents";
-import CurrentPlan from "../../../shared/widgets/CurrentPlan";
-import DealsAnalytics from "../../../shared/metrics/DealsAnalytics";
-import PropertiesList from "../../../shared/widgets/PropertiesList";
-import RecentActivities1 from "../../../shared/widgets/RecentActivities1";
+import Alert from "@mui/material/Alert"
+import { Mainnet, DAppProvider, useEtherBalance, useEthers, useTokenBalance , useSigner,  Polygon, useSendTransaction} from '@usedapp/core'
+
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'; 
 import axios from "axios"
@@ -17,11 +12,83 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
+import TokenMinterABI from "../contracts/TokenMinterABI.json"
+import BundleToken from "../contracts/BundleToken.json"
+import VaultABI from "../contracts/VaultABI.json"
+import { formatUnits } from '@ethersproject/units'
+
+
 
 const ListingDashboard = () => {
+
+  const [amountInEther, setAmountInEther] = useState('0')
+const [receiptStatus, setReceiptStatus] = useState(false)
+const [receiptStake, setReceiptStake] = useState(false)
+
+const vaultAddress = '0xf6f6928cac8e59b2b12216282a3f2cd5a2b366c0'
+
+const signer = useSigner()
+
+const DAI_ADDRESS = '0x4987131473ccC84FEdbf22Ab383b6188D206cc9C'
+const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
+
+const daiBalance = useTokenBalance(DAI_ADDRESS, account)
+const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
+
+const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
+
+
+const handleApprove = () => {  
+
+  const amountInWei = ethers.utils.parseEther(amountInEther); 
+      sendApprove("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", amountInWei.toString())
+    setApproval(true)
+   approvedRef.current = true;
+   };
+
+
+
+   const handleDeposit = async() => {
+
+    try {     
+ const amountInWei = ethers.utils.parseEther(amountInEther); 
+const txResponse = await tokenContract.deposit(amountInWei);
+    const receipt = await txResponse.wait()
+    } catch (error) {
+       console.log(error)
+    }
+  }
+
+
+  const handleWithdraw = async() => {
+
+    try {
+         
+ const amountInWei = ethers.utils.parseEther(amountInEther); 
+const txResponse = await tokenContract.withdraw(amountInWei);
+    const receipt = await txResponse.wait()
+    if (receipt) {
+      setReceiptStatus(true)
+    }
+    } catch (error) {
+       console.log(error)
+    }
+  }
+
+ 
+  const AlertStatus = () => {
+    if (receiptStatus) {
+      return<Alert severity='success'>
+         Transaction Successful
+      </Alert>
+    }
+  }
+ 
     return (
         <>
-        <Grid container>
+        <AlertStatus/>
+      <Grid container>
+       
         <Grid container  xs={12} md={6} lg={6} justifyContent="center" alignItems="center" >
          <Box>
          <img src="https://dex-jet.vercel.app/assets/LAPTOP.png"  style={{height:" 400px"}}/>
@@ -36,14 +103,18 @@ const ListingDashboard = () => {
              <Paper sx={{display: "flex", justifyContent: "space-between", alignItem: "center" , minWidth: "10%", p:1}}>
               <Box sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
               <img src='https://dex-jet.vercel.app/assets/wallet.png' style={{height: "70px"}}/>
-              <Typography variant="h6">
+              <Typography variant="h6" sx={{mt:3}}>
                    Derphi Balance
              </Typography>
               </Box>
-              <Box>
-              <Typography variant="h6"  sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
-                 0DFI
-             </Typography>
+              <Box >
+                 {daiBalance ?  <Typography variant="h6" sx={{mt:3}}>{formatUnits(daiBalance, 18)} DFI </Typography> :
+                  <Typography variant="h6" sx={{mt:3}}>0 DFI </Typography>
+                 
+                 }
+              
+                
+            
 
               </Box>
              </Paper>
@@ -52,14 +123,12 @@ const ListingDashboard = () => {
              <Paper sx={{display: "flex", justifyContent: "space-between", alignItem: "center" ,  minWidth: "10%", p:1}}>
               <Box sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
               <img src='https://dex-jet.vercel.app/assets/wallet.png' style={{height: "70px"}}/>
-              <Typography variant="h6">
-                   Locked rewards
+              <Typography variant="h6" sx={{mt:3}}>
+                 Locked rewards
              </Typography>
               </Box>
               <Box>
-              <Typography variant="h6">
-                 
-             </Typography>
+           
 
               </Box>
              </Paper>
@@ -68,14 +137,12 @@ const ListingDashboard = () => {
              <Paper sx={{display: "flex", justifyContent: "space-between", alignItem: "center" ,   minWidth: "10%", p:1}}>
               <Box sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
               <img src='https://dex-jet.vercel.app/assets/wallet.png' style={{height: "70px"}}/>
-              <Typography variant="h6">
+              <Typography variant="h6" sx={{mt:3}}>
                   Unlocked rewards
              </Typography>
               </Box>
               <Box>
-              <Typography variant="h6">
-                   Rewards
-             </Typography>
+         
 
               </Box>
              </Paper>
@@ -103,7 +170,9 @@ const ListingDashboard = () => {
                   Available: 
                   </Typography>
                
-                 <TextField  size="small"/>
+                 <TextField  size="small"         value={amountInEther}
+        onChange={(e) => setAmountInEther(e.target.value)}
+/>
               
                     </Stack>
                   </Grid>
@@ -111,8 +180,16 @@ const ListingDashboard = () => {
                   <Typography variant='h5'>
                  DFI Vault
                   </Typography>
-                  <Button variant='contained' sx={{mt: 2, width: "80%"}}>
-                 Deposit
+                  <Button variant='contained' sx={{mt: 2, width: "80%"}}   onClick={() => {
+                             
+                             if (approvedRef) {
+                                 handleDeposit()
+                             } else{
+                                 handleApprove()
+                             }
+                         }}>
+                 
+                  {approvedRef? 'Deposit' : 'Approve'}
                   </Button>
                  </Grid>
                  <Grid xs={12} sm={12} md={3}  lg={3}>
@@ -129,7 +206,7 @@ const ListingDashboard = () => {
                   <Typography variant='h5'>
                  DFI Vault
                   </Typography>
-                  <Button variant='contained' sx={{mt: 2, width: "80%"}}>
+                  <Button variant='contained' sx={{mt: 2, width: "80%"}} onClick={handleWithdraw}>
                  Withdraw
                   </Button>
                  </Grid>
