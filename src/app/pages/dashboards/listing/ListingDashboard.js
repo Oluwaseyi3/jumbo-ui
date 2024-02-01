@@ -1,7 +1,7 @@
 import React, {useEffect , useState, useRef } from 'react';
 import {Grid} from "@mui/material";
 import Alert from "@mui/material/Alert"
-import { Mainnet, DAppProvider, useEtherBalance, useEthers, useTokenBalance , useSigner,  Polygon, useSendTransaction} from '@usedapp/core'
+import { Mainnet, DAppProvider, useEtherBalance, useEthers, useTokenBalance , useSigner,  Polygon, useContractFunction} from '@usedapp/core'
 
 
 import TextField from '@mui/material/TextField';
