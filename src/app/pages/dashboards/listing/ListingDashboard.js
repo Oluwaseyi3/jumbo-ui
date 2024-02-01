@@ -22,77 +22,77 @@ import {ethers} from "ethers"
 
 const ListingDashboard = () => {
 
-//   const [amountInEther, setAmountInEther] = useState('0')
-// const [receiptStatus, setReceiptStatus] = useState(false)
-// const [receiptStake, setReceiptStake] = useState(false)
-// const [appproval, setApproval] = useState(false)
+  const [amountInEther, setAmountInEther] = useState('0')
+const [receiptStatus, setReceiptStatus] = useState(false)
+const [receiptStake, setReceiptStake] = useState(false)
+const [appproval, setApproval] = useState(false)
 
-// const { account, deactivate, activateBrowserWallet, library } = useEthers()
-// const approvedRef = useRef(false);
-
-
-// const vaultAddress = '0xf6f6928cac8e59b2b12216282a3f2cd5a2b366c0'
-
-// const signer = useSigner()
-
-// const DAI_ADDRESS = '0x4987131473ccC84FEdbf22Ab383b6188D206cc9C'
-// const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
-
-// const daiBalance = useTokenBalance(DAI_ADDRESS, account)
-// const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
-
-// const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
+const { account, deactivate, activateBrowserWallet, library } = useEthers()
+const approvedRef = useRef(false);
 
 
-// const handleApprove = () => {  
+const vaultAddress = '0xf6f6928cac8e59b2b12216282a3f2cd5a2b366c0'
 
-//   const amountInWei = ethers.utils.parseEther(amountInEther); 
-//       sendApprove("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", amountInWei.toString())
-//     setApproval(true)
-//    approvedRef.current = true;
-//    };
+const signer = useSigner()
 
+const DAI_ADDRESS = '0x4987131473ccC84FEdbf22Ab383b6188D206cc9C'
+const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
 
+const daiBalance = useTokenBalance(DAI_ADDRESS, account)
+const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
 
-//    const handleDeposit = async() => {
-
-//     try {     
-//  const amountInWei = ethers.utils.parseEther(amountInEther); 
-// const txResponse = await tokenContract.deposit(amountInWei);
-//     const receipt = await txResponse.wait()
-//     } catch (error) {
-//        console.log(error)
-//     }
-//   }
+const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
 
 
-//   const handleWithdraw = async() => {
+const handleApprove = () => {  
 
-//     try {
+  const amountInWei = ethers.utils.parseEther(amountInEther); 
+    sendApprove("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", amountInWei.toString())
+    setApproval(true)
+   approvedRef.current = true;
+   };
+
+
+
+   const handleDeposit = async() => {
+
+    try {     
+ const amountInWei = ethers.utils.parseEther(amountInEther); 
+const txResponse = await tokenContract.deposit(amountInWei);
+    const receipt = await txResponse.wait()
+    } catch (error) {
+       console.log(error)
+    }
+  }
+
+
+  const handleWithdraw = async() => {
+
+    try {
          
-//  const amountInWei = ethers.utils.parseEther(amountInEther); 
-// const txResponse = await tokenContract.withdraw(amountInWei);
-//     const receipt = await txResponse.wait()
-//     if (receipt) {
-//       setReceiptStatus(true)
-//     }
-//     } catch (error) {
-//        console.log(error)
-//     }
-//   }
+ const amountInWei = ethers.utils.parseEther(amountInEther); 
+const txResponse = await tokenContract.withdraw(amountInWei);
+    const receipt = await txResponse.wait()
+    if (receipt) {
+      setReceiptStatus(true)
+    }
+    } catch (error) {
+       console.log(error)
+    }
+  }
 
  
-//   const AlertStatus = () => {
-//     if (receiptStatus) {
-//       return<Alert severity='success'>
-//          Transaction Successful
-//       </Alert>
-//     }
-//   }
+  const AlertStatus = () => {
+    if (receiptStatus) {
+      return<Alert severity='success'>
+         Transaction Successful
+      </Alert>
+    }
+  }
  
     return (
         <>
-        {/* <AlertStatus/> */}
+        <AlertStatus/>
       <Grid container>
        
         <Grid container  xs={12} md={6} lg={6} justifyContent="center" alignItems="center" >
@@ -114,10 +114,10 @@ const ListingDashboard = () => {
              </Typography>
               </Box>
               <Box >
-                 {/* {daiBalance ?  <Typography variant="h6" sx={{mt:3}}>{formatUnits(daiBalance, 18)} DFI </Typography> :
+                 {daiBalance ?  <Typography variant="h6" sx={{mt:3}}>{formatUnits(daiBalance, 18)} DFI </Typography> :
                   <Typography variant="h6" sx={{mt:3}}>0 DFI </Typography>
                  
-                 } */}
+                 }
               
                 
             
@@ -177,8 +177,8 @@ const ListingDashboard = () => {
                   </Typography>
                
                  <TextField  size="small"     
-        //              value={amountInEther}
-        // onChange={(e) => setAmountInEther(e.target.value)}
+                     value={amountInEther}
+        onChange={(e) => setAmountInEther(e.target.value)}
 />
               
                     </Stack>
@@ -188,17 +188,17 @@ const ListingDashboard = () => {
                  DFI Vault
                   </Typography>
                   <Button variant='contained' sx={{mt: 2, width: "80%"}}  
-                  //  onClick={() => {
+                   onClick={() => {
                              
-                  //            if (approvedRef) {
-                  //                handleDeposit()
-                  //            } else{
-                  //                handleApprove()
-                  //            }
-                  //        }}
+                             if (approvedRef) {
+                                 handleDeposit()
+                             } else{
+                                 handleApprove()
+                             }
+                         }}
                          >
                  
-                  {/* {approvedRef? 'Deposit' : 'Approve'} */}
+                  {approvedRef? 'Deposit' : 'Approve'}
                   </Button>
                  </Grid>
                  <Grid xs={12} sm={12} md={3}  lg={3}>
@@ -216,7 +216,7 @@ const ListingDashboard = () => {
                  DFI Vault
                   </Typography>
                   <Button variant='contained' sx={{mt: 2, width: "80%"}} 
-                  // onClick={handleWithdraw}
+                  onClick={handleWithdraw}
                   >
                  Withdraw
                   </Button>
