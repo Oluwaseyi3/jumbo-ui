@@ -94,7 +94,136 @@ const ListingDashboard = () => {
         <>
         {/* <AlertStatus/> */}
       <Grid container>
-        hh
+       
+        <Grid container  xs={12} md={6} lg={6} justifyContent="center" alignItems="center" >
+         <Box>
+         <img src="https://dex-jet.vercel.app/assets/LAPTOP.png"  style={{height:" 400px"}}/>
+         </Box>
+        </Grid>
+        <Grid container  xs={12} md={6} lg={6}  direction="column" justifyContent="center" alignItems="center">
+           <Typography variant="h4">
+             Rewards
+           </Typography>
+
+           <Stack spacing={2} sx={{mt: 10, width: "80%"}} container>
+             <Paper sx={{display: "flex", justifyContent: "space-between", alignItem: "center" , minWidth: "10%", p:1}}>
+              <Box sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
+              <img src='https://dex-jet.vercel.app/assets/wallet.png' style={{height: "70px"}}/>
+              <Typography variant="h6" sx={{mt:3}}>
+                   Derphi Balance
+             </Typography>
+              </Box>
+              <Box >
+                 {/* {daiBalance ?  <Typography variant="h6" sx={{mt:3}}>{formatUnits(daiBalance, 18)} DFI </Typography> :
+                  <Typography variant="h6" sx={{mt:3}}>0 DFI </Typography>
+                 
+                 } */}
+              
+                
+            
+
+              </Box>
+             </Paper>
+             
+
+             <Paper sx={{display: "flex", justifyContent: "space-between", alignItem: "center" ,  minWidth: "10%", p:1}}>
+              <Box sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
+              <img src='https://dex-jet.vercel.app/assets/wallet.png' style={{height: "70px"}}/>
+              <Typography variant="h6" sx={{mt:3}}>
+                 Locked rewards
+             </Typography>
+              </Box>
+              <Box>
+           
+
+              </Box>
+             </Paper>
+            
+
+             <Paper sx={{display: "flex", justifyContent: "space-between", alignItem: "center" ,   minWidth: "10%", p:1}}>
+              <Box sx={{display: "flex", justifyContent: "center", alignItem: "center" }}>
+              <img src='https://dex-jet.vercel.app/assets/wallet.png' style={{height: "70px"}}/>
+              <Typography variant="h6" sx={{mt:3}}>
+                  Unlocked rewards
+             </Typography>
+              </Box>
+              <Box>
+         
+
+              </Box>
+             </Paper>
+            </Stack>
+          </Grid>
+     </Grid>
+
+     <Grid  direction="column" alignItems="center" sx={{mt: 5}}>
+       <Box>
+         <Typography variant='h3'>
+         Available Staking Options
+          </Typography>
+       </Box>
+       <Box sx={{mt: 5,  p:5}}>
+         <Paper  sx={{p: 2}} elevation={3}>
+              <Grid>
+              <Typography variant='h5'>
+                 DFI Vault
+                  </Typography>
+              </Grid>
+              <Grid container justifyContent="center" alignItems="center" sx={{mt: 5}}>
+                  <Grid xs={12} sm={12} md={3}  lg={3}>
+                    <Stack spacing={2}>
+                    <Typography variant='h5'>
+                  Available: 
+                  </Typography>
+               
+                 <TextField  size="small"     
+        //              value={amountInEther}
+        // onChange={(e) => setAmountInEther(e.target.value)}
+/>
+              
+                    </Stack>
+                  </Grid>
+                  <Grid xs={12} sm={12} md={3} lg={3} container direction="column" justifyContent="center" alignItems="center">
+                  <Typography variant='h5'>
+                 DFI Vault
+                  </Typography>
+                  <Button variant='contained' sx={{mt: 2, width: "80%"}}  
+                  //  onClick={() => {
+                             
+                  //            if (approvedRef) {
+                  //                handleDeposit()
+                  //            } else{
+                  //                handleApprove()
+                  //            }
+                  //        }}
+                         >
+                 
+                  {/* {approvedRef? 'Deposit' : 'Approve'} */}
+                  </Button>
+                 </Grid>
+                 <Grid xs={12} sm={12} md={3}  lg={3}>
+                 <Stack spacing={2}>
+                    <Typography variant='h5'>
+                  Available: 
+                  </Typography>
+               
+                 <TextField  size="small"/>
+              
+                    </Stack>
+                 </Grid>
+                 <Grid xs={12} sm={12} md={3} lg={3} container direction="column" justifyContent="center" alignItems="center">
+                  <Typography variant='h5'>
+                 DFI Vault
+                  </Typography>
+                  <Button variant='contained' sx={{mt: 2, width: "80%"}} 
+                  // onClick={handleWithdraw}
+                  >
+                 Withdraw
+                  </Button>
+                 </Grid>
+              </Grid>
+         </Paper>
+      </Box>
      </Grid>
      </>
     );
