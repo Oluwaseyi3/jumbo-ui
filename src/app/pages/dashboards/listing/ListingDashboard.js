@@ -17,6 +17,7 @@ import BundleToken from "../contracts/BundleToken.json"
 import VaultABI from "../contracts/VaultABI.json"
 import { formatUnits } from '@ethersproject/units'
 import { Contract } from '@ethersproject/contracts';
+import {ethers} from "ethers"
 
 
 const ListingDashboard = () => {
@@ -24,6 +25,7 @@ const ListingDashboard = () => {
   const [amountInEther, setAmountInEther] = useState('0')
 const [receiptStatus, setReceiptStatus] = useState(false)
 const [receiptStake, setReceiptStake] = useState(false)
+const [appproval, setApproval] = useState(false)
 
 const { account, deactivate, activateBrowserWallet, library } = useEthers()
 const approvedRef = useRef(false);
