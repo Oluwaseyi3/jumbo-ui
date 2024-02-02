@@ -35,11 +35,28 @@ const vaultAddress = '0xf6f6928cac8e59b2b12216282a3f2cd5a2b366c0'
 
 const signer = useSigner()
 
+const [balance, setBalance] = useState(0)
+
+
 const DAI_ADDRESS = '0x4987131473ccC84FEdbf22Ab383b6188D206cc9C'
 const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
 
-const daiBalance = useTokenBalance(DAI_ADDRESS, account)
-const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
+
+// const daiBalance = useTokenBalance(DAI_ADDRESS, account)
+
+
+useEffect(() => {
+   const getBalance = async() =>{
+    const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
+    const res = await fromTokenContract.balanceOf(account)
+    const resformatted = ethers.utils.formatUnits(res, 18)
+    setBalance(resformatted)
+   }
+
+   getBalance()
+}, [])
+
+
 
 const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
 
@@ -201,7 +218,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                          }}
                          >
                  
-                  {/* {approvedRef? 'Deposit' : 'Approve'} */}
+                  {approvedRef? 'Deposit' : 'Approve'} 
                   </Button>
                  </Grid>
                  <Grid xs={12} sm={12} md={3}  lg={3}>
