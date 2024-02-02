@@ -118,6 +118,9 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                   <Typography variant="h6" sx={{mt:3}}>0 DFI </Typography>
                  
                  } */}
+                 {daiBalance ?  <Typography variant="h6" sx={{mt:3}}> DFI </Typography> :
+                  <Typography variant="h6" sx={{mt:3}}>0 DFI </Typography>                 
+                 }
               
                 
             
@@ -177,8 +180,8 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                   </Typography>
                
                  <TextField  size="small"     
-        //              value={amountInEther}
-        // onChange={(e) => setAmountInEther(e.target.value)}
+                     value={amountInEther}
+        onChange={(e) => setAmountInEther(e.target.value)}
 />
               
                     </Stack>
