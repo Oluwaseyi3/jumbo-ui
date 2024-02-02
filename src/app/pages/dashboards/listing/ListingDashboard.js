@@ -51,6 +51,7 @@ useEffect(() => {
    
     const res = await fromTokenContract.balanceOf(account)
     const resformatted = ethers.utils.formatUnits(res, 18)
+    console.log(resformatted)
     setBalance(resformatted)
    }
 
