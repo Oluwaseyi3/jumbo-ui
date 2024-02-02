@@ -46,14 +46,14 @@ const ThemeModeOption = () => {
                 borderBottom: 1, borderColor: 'divider',
             }}
         >
-            <Div>
+            {/* <Div>
                 <FormControlLabel
                     control={
                         <Switch checked={theme?.mode === "dark"} onChange={handleModeChange} name="header-fixed" />
                     }
                     label="Apply Dark Theme"
                 />
-            </Div>
+            </Div> */}
         </JumboCardQuick>
     );
 };

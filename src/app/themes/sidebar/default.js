@@ -1,4 +1,5 @@
 import {alpha} from "@mui/material/styles";
+import {darken} from "@mui/material";
 
 export const sidebarTheme = {
     type: "light",
@@ -40,28 +41,28 @@ export const sidebarTheme = {
             contrastText: '#FFF'
         },
         text: {
-            primary: '#475259',
+            primary: '#C5CDE6',
             secondary: '#8595A6',
             disabled: '#A2B2C3',
         },
         nav: {
             action: {
-                active: '#7352C7',
-                hover: '#7352C7',
+                active: '#FFFFFF',
+                hover: '#FFFFFF',
             },
             background: {
-                active: alpha('#7352C7', .15),
-                hover: "#E9ECEF"
+                active: '#7352C7',
+                hover: alpha('#FFFFFF', .15),
             },
             tick: {
-                active: '#7352C7',
-                hover: "#ADB5BD"
+                active: darken('#7352C7', .25),
+                hover: alpha('#FFFFFF', .25),
             }
         },
         divider : '#DEE2E6',
         background: {
-            paper: '#FFFFFF',
-            default: '#F5F7FA',
+            paper: '#26324D',
+            default: '#222D45',
         },
         action: {
             active: '#475259',

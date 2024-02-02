@@ -1,29 +1,30 @@
+import {alpha} from "@mui/material/styles";
+
 export const headerTheme = {
     type: "light",
     components: {
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    color: '#475259',
-                    background: '#F5F7FA'
+                    color: '#FFFFFF',
+                    background: '#222D45'
                 }
             }
         },
         MuiInputBase: {
             styleOverrides: {
                 root: {
-                    background: '#FFFFFF'
+                    background: '#3C475F'
                 }
             }
         },
         MuiIconButton: {
             styleOverrides: {
                 root: {
-                    color: '#8595A6',
-                    background: '#FFFFFF',
+                    color: 'inherit',
+                    background: '#3C475F',
                     '&:hover': {
-                        color: '#475259',
-                        background: '#FFFFFF',
+                        background: '#46536f',
                     }
                 }
             }
@@ -71,14 +72,14 @@ export const headerTheme = {
             secondary: '#8595A6',
             disabled: '#A2B2C3',
         },
-        divider: '#DEE2E6',
+        divider : alpha('#FFFFFF', 0.1),
         background: {
-            paper: '#FFFFFF',
-            default: '#F5F7FA',
+            paper: '#26324D',
+            default: '#3C475F',
         },
         action: {
-            active: '#475259',
-            hover: '#F5F7FA',
+            active: '#C5CDE6',
+            hover: '#323b4f',
         },
     },
 };

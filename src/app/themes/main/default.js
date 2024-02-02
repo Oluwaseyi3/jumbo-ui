@@ -49,18 +49,20 @@ export const mainTheme = {
             contrastText: '#FFF'
         },
         text: {
-            primary: '#475259',
+            primary: '#C5CDE6',
             secondary: '#8595A6',
             disabled: '#A2B2C3',
         },
-        divider : '#DEE2E6',
+        divider : alpha('#FFFFFF', 0.1),
         background: {
-            paper: '#FFFFFF',
-            default: '#F5F7FA',
+            paper: '#26324D',
+            default: '#19243B',
         },
         action: {
-            active: '#475259',
-            hover: '#F5F7FA',
+            active: '#C5CDE6',
+            hover: '#323b4f',
+            disabled: '#8595A6',
+            disabledBackground: '#8595A6'
         },
     },
     shadows: [
@@ -99,42 +101,42 @@ export const mainTheme = {
             fontSize: '1.5rem',
             lineHeight: 1.2,
             fontWeight: 400,
-            color: '#37373C',
+            color: '#f6f6f6',
             margin: '0 0 .5rem'
         },
         h2: {
             fontSize: '1.4rem',
             lineHeight: 1.2,
             fontWeight: 400,
-            color: '#37373C',
+            color: '#f6f6f6',
             margin: '0 0 .5rem'
         },
         h3: {
             fontSize: '1.25rem',
             lineHeight: 1.2,
             fontWeight: 400,
-            color: '#37373C',
+            color: '#f6f6f6',
             margin: '0 0 .5rem'
         },
         h4: {
             fontSize: '1.1rem',
             lineHeight: 1.2,
             fontWeight: 400,
-            color: '#37373C',
+            color: '#f6f6f6',
             margin: '0 0 .5rem'
         },
         h5: {
             fontSize: '1rem',
             lineHeight: 1.2,
             fontWeight: 400,
-            color: '#37373C',
+            color: '#f6f6f6',
             margin: '0 0 .5rem'
         },
         h6: {
             fontSize: '.875rem',
             lineHeight: 1.2,
             fontWeight: 400,
-            color: '#37373C',
+            color: '#f6f6f6',
             margin: '0 0 .5rem'
         },
         body1: {
@@ -160,7 +162,7 @@ export const mainTheme = {
             styleOverrides: {
                 root: {
                     borderRadius: 12,
-                    boxShadow: `0 0.5rem 1.25rem ${alpha('#7352C7', .175)}`
+                    boxShadow: `0 0.5rem 1.25rem ${alpha('#000000', .15)}`
                 },
             },
         },
@@ -197,6 +199,9 @@ export const mainTheme = {
         },
         MuiChip: {
             styleOverrides: {
+                root: {
+                  backgroundColor: '#3C475F'
+                },
                 sizeSmall: {
                     height: 22,
                     fontSize: 12,
@@ -211,13 +216,21 @@ export const mainTheme = {
                 },
                 sizeSmall: {
                     fontSize: '12px'
+                },
+                colorInherit: {
+                    backgroundColor: '#3C475F',
+
+                    '&:hover': {
+                        backgroundColor: '#323b4f'
+                    }
                 }
             }
         },
         MuiPopover: {
             styleOverrides: {
                 paper: {
-                    borderRadius: 8
+                    borderRadius: 8,
+                    backgroundColor: '#3C475F',
                 }
             }
         },
@@ -238,15 +251,24 @@ export const mainTheme = {
         MuiAvatarGroup: {
             styleOverrides: {
                 avatar: {
-                    backgroundColor: '#757575',
-                    fontSize: 16
+                    color: '#C5CDE6',
+                    backgroundColor: '#323b4f',
+                    fontSize: 16,
+                    borderColor: alpha('#FFFFFF', 0.1),
                 }
             }
-        }
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    background: '#3C475F',
+                }
+            }
+        },
     },
     jumboComponents: {
         JumboSearch: {
-            background: '#F5F5F5'
+            background: '#3C475F'
         }
     }
 };

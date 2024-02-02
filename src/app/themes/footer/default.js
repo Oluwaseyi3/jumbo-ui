@@ -37,13 +37,13 @@ export const footerTheme = {
             contrastText: '#FFF'
         },
         text: {
-            primary: '#475259',
+            primary: '#C5CDE6',
             secondary: '#8595A6',
             disabled: '#A2B2C3',
         },
-        divider : '#DEE2E6',
+        divider : '#222D45',
         background: {
-            paper: '#FFFFFF',
+            paper: '#222D45',
             default: '#F5F7FA',
         },
         action: {
