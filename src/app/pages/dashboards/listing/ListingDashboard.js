@@ -42,11 +42,15 @@ const DAI_ADDRESS = '0x4987131473ccC84FEdbf22Ab383b6188D206cc9C'
 const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
 
 
+
+
+  
+
+const [balance, setBalance] = useState(0)
+
 const daiBalance = useTokenBalance(DAI_ADDRESS, account)
 setBalance(formatUnits(daiBalance, 18))
 
-  
-const [balance, setBalance] = useState(0)
       const fromTokenContracts = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken, signer)
 
   
@@ -128,7 +132,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
              </Typography>
               </Box>
               <Box >
-                <Typography variant="h6" sx={{mt:3}}>{balance} DFI </Typography> 
+                <Typography variant="h6" sx={{mt:3}}> {balance} DFI </Typography> 
                 
                
               
