@@ -58,7 +58,7 @@ useEffect(() => {
 }, [])
 
 
-
+const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
 const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
 
 
