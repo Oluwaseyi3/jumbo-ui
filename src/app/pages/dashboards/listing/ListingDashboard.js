@@ -48,7 +48,7 @@ const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
 useEffect(() => {
 
    const getBalance = async() =>{
-    const signer = useSigner()
+    
       const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken, signer)
     const res = await fromTokenContract.balanceOf(account)
     const resformatted = ethers.utils.formatUnits(res, 18)
