@@ -15,7 +15,7 @@ const config = {
 
     authSetting: {
         axiosObject: jwtAuthAxios,
-        fallbackPath: "/user/login",
+        fallbackPath: "/dashboards/misc",
         getAuthUserService: authServices.getCurrentUser,
         redirectNotAuthenticatedPath: "/dashboards/misc"
     },
