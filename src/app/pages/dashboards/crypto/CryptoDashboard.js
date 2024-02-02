@@ -164,7 +164,9 @@ const approvedRef = useRef(false);
    const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
    const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
    
-   
+   const vaultAddress = '0xf6f6928cac8e59b2b12216282a3f2cd5a2b366c0'
+
+const signer = useSigner()   
 
    const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
    const handleApprove = () => {  
