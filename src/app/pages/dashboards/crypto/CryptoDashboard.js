@@ -165,6 +165,8 @@ const approvedRef = useRef(false);
    const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
    
    
+
+   const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
    const handleApprove = () => {  
    
      const amountInWei = ethers.utils.parseEther(amountInEther); 
