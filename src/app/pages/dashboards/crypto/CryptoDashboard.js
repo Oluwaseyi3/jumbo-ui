@@ -171,6 +171,18 @@ const approvedRef = useRef(false);
        sendApprove("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", amountInWei.toString())
       approvedRef.current = true;
       };
+
+      const handleDeposit = async() => {
+
+        try {     
+     const amountInWei = ethers.utils.parseEther(amountInEther); 
+    const txResponse = await tokenContract.mint(amountInWei);
+        const receipt = await txResponse.wait()
+        } catch (error) {
+           console.log(error)
+        }
+      }
+
     return (
        <main>
          <Grid container spacing={5} sx={{mt: 5, p: 3}}>
@@ -274,7 +286,16 @@ const approvedRef = useRef(false);
          />
          {/* </Paper> */}
 
-          <Button variant="contained" onClick={handleApprove}>
+          <Button variant="contained" 
+            onClick={() => {
+                             
+              if (approvedRef) {
+                  handleDeposit()
+              } else{
+                  handleApprove()
+              }
+          }}
+          >
             Redeem Tokens
           </Button>
       </Stack>
