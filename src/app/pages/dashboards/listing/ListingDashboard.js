@@ -47,6 +47,7 @@ const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
   
 
 const [balance, setBalance] = useState(0)
+const [avalAmount, setavalAmount] = useState(0)
 
 const daiBalance = useTokenBalance(DAI_ADDRESS, account)
 
@@ -58,7 +59,15 @@ const daiBalance = useTokenBalance(DAI_ADDRESS, account)
       setBalance(formatUnits(DFIbal, 18))
       }
       getVal()
+      
 
+      const getValWith = async() => {
+        const fromTokenContracts = new ethers.Contract(vaultAddress, tokenContract, signer)
+      const DFIbal = await fromTokenContracts.getBalance(account)
+      console.log(  formatUnits(DFIbal, 18))
+      setavalAmount(formatUnits(DFIbal, 18))
+      }
+      getValWith()
   
    
 
@@ -196,7 +205,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                   <Grid xs={12} sm={12} md={3}  lg={3}>
                     <Stack spacing={2}>
                     <Typography variant='h5'>
-                  Available: 
+                  Available: {balance}
                   </Typography>
                
                  <TextField  size="small"     
@@ -227,7 +236,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                  <Grid xs={12} sm={12} md={3}  lg={3}>
                  <Stack spacing={2}>
                     <Typography variant='h5'>
-                  Available: 
+                  Available: {avalAmount}
                   </Typography>
                
                  <TextField  size="small"/>
