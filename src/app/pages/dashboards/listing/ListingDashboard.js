@@ -2,7 +2,7 @@ import React, {useEffect , useState, useRef } from 'react';
 import {Grid} from "@mui/material";
 import Alert from "@mui/material/Alert"
 import { Mainnet, DAppProvider, useEtherBalance, useEthers, useTokenBalance , useSigner,  Polygon, useContractFunction} from '@usedapp/core'
-
+import boxes from "../../../../images/boxes.svg"
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'; 
@@ -48,6 +48,7 @@ const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
 useEffect(() => {
 
    const getBalance = async() =>{
+    const signer = useSigner()
       const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken, signer)
     const res = await fromTokenContract.balanceOf(account)
     const resformatted = ethers.utils.formatUnits(res, 18)

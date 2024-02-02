@@ -44,7 +44,7 @@ const MiscDashboard = () => {
           <Grid container spacing={2} sx={{minHeight: 350, height: "50%"}}> 
           <Grid item lg={6}  xs={12}  container direction="column"  justifyContent="start" alignItems="center">
            <Box sx={{mt: 3}}>
-           <img src={staking_boxes} style={{height:" 200px"}}/>
+           <img src={boxes} style={{height:" 200px"}}/>
            <Typography variant="h4">
            Derpfi is redefining passive asset management. We're a community-governed project offering full exposure to crypto risk-management and the DeFi ecosystem through passively managed, non-custodial funds and indices.
            </Typography>

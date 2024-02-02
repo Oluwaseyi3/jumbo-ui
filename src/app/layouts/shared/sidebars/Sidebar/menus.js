@@ -56,7 +56,7 @@ const menus = [
             },
             {
                 uri: "/dashboards/listing",
-                label: 'sidebar.menuItem.listing',
+                label: 'staking',
                 type: "nav-item",
                 icon: <ListAltOutlinedIcon sx={{fontSize: 20}}/>
             },
