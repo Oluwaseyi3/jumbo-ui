@@ -6,13 +6,13 @@ import { Mainnet, DAppProvider, useEtherBalance, useEthers, useTokenBalance , us
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'; 
-import axios from "axios"
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import TokenMinterABI from "../contracts/TokenMinterABI.json"
+
 import BundleToken from "../contracts/BundleToken.json"
 import VaultABI from "../contracts/VaultABI.json"
 import { formatUnits } from '@ethersproject/units'
@@ -92,7 +92,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
  
     return (
         <>
-        <AlertStatus/>
+        {/* <AlertStatus/> */}
       <Grid container>
        
         <Grid container  xs={12} md={6} lg={6} justifyContent="center" alignItems="center" >
@@ -114,10 +114,10 @@ const txResponse = await tokenContract.withdraw(amountInWei);
              </Typography>
               </Box>
               <Box >
-                 {daiBalance ?  <Typography variant="h6" sx={{mt:3}}>{formatUnits(daiBalance, 18)} DFI </Typography> :
+                 {/* {daiBalance ?  <Typography variant="h6" sx={{mt:3}}>{formatUnits(daiBalance, 18)} DFI </Typography> :
                   <Typography variant="h6" sx={{mt:3}}>0 DFI </Typography>
                  
-                 }
+                 } */}
               
                 
             
@@ -177,8 +177,8 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                   </Typography>
                
                  <TextField  size="small"     
-                     value={amountInEther}
-        onChange={(e) => setAmountInEther(e.target.value)}
+        //              value={amountInEther}
+        // onChange={(e) => setAmountInEther(e.target.value)}
 />
               
                     </Stack>
@@ -188,17 +188,17 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                  DFI Vault
                   </Typography>
                   <Button variant='contained' sx={{mt: 2, width: "80%"}}  
-                   onClick={() => {
+                  //  onClick={() => {
                              
-                             if (approvedRef) {
-                                 handleDeposit()
-                             } else{
-                                 handleApprove()
-                             }
-                         }}
+                  //            if (approvedRef) {
+                  //                handleDeposit()
+                  //            } else{
+                  //                handleApprove()
+                  //            }
+                  //        }}
                          >
                  
-                  {approvedRef? 'Deposit' : 'Approve'}
+                  {/* {approvedRef? 'Deposit' : 'Approve'} */}
                   </Button>
                  </Grid>
                  <Grid xs={12} sm={12} md={3}  lg={3}>
@@ -216,7 +216,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                  DFI Vault
                   </Typography>
                   <Button variant='contained' sx={{mt: 2, width: "80%"}} 
-                  onClick={handleWithdraw}
+                  // onClick={handleWithdraw}
                   >
                  Withdraw
                   </Button>
