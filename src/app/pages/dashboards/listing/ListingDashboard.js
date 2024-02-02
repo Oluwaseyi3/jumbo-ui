@@ -49,9 +49,15 @@ const tokenContract = new ethers.Contract(vaultAddress, VaultABI, signer)
 const [balance, setBalance] = useState(0)
 
 const daiBalance = useTokenBalance(DAI_ADDRESS, account)
-setBalance(formatUnits(daiBalance, 18))
 
-      const fromTokenContracts = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken, signer)
+
+      const getVal = async() => {
+        const fromTokenContracts = new ethers.Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken, signer)
+      const DFIbal = await fromTokenContracts.balanceOf(account)
+      console.log(  formatUnits(DFIbal, 18))
+      setBalance(formatUnits(DFIbal, 18))
+      }
+      getVal()
 
   
    
