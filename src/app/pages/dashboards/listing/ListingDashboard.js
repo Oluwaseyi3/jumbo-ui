@@ -191,14 +191,14 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                  DFI Vault
                   </Typography>
                   <Button variant='contained' sx={{mt: 2, width: "80%"}}  
-                  //  onClick={() => {
+                   onClick={() => {
                              
-                  //            if (approvedRef) {
-                  //                handleDeposit()
-                  //            } else{
-                  //                handleApprove()
-                  //            }
-                  //        }}
+                             if (approvedRef) {
+                                 handleDeposit()
+                             } else{
+                                 handleApprove()
+                             }
+                         }}
                          >
                  
                   {/* {approvedRef? 'Deposit' : 'Approve'} */}
@@ -219,7 +219,7 @@ const txResponse = await tokenContract.withdraw(amountInWei);
                  DFI Vault
                   </Typography>
                   <Button variant='contained' sx={{mt: 2, width: "80%"}} 
-                  // onClick={handleWithdraw}
+                  onClick={handleWithdraw}
                   >
                  Withdraw
                   </Button>
