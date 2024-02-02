@@ -1,4 +1,4 @@
-import React, {useEffect , useState} from 'react';
+import React, {useEffect , useState, useRef } from 'react';
 import {Grid} from "@mui/material";
 import BitcoinPrice from "./components/BitcoinPrice";
 import RipplePrice from "./components/RipplePrice";
@@ -12,6 +12,16 @@ import CurrencyCalculator from "../../../shared/widgets/CurrencyCalculator";
 import LatestPosts from "../../../shared/widgets/LatestPosts";
 import MarketingCampaign from "../../../shared/widgets/MarketingCampaign";
 import CryptoNews from "../../../shared/widgets/CryptoNews";
+
+import { Mainnet, DAppProvider, useEtherBalance, useEthers, useTokenBalance , useSigner,  Polygon, useContractFunction} from '@usedapp/core'
+import boxes from "../../../../images/boxes.svg"
+
+import BundleToken from "../contracts/BundleToken.json"
+import VaultABI from "../contracts/VaultABI.json"
+import { formatUnits } from '@ethersproject/units'
+import { Contract } from '@ethersproject/contracts';
+import {ethers} from "ethers"
+
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'; 
@@ -83,6 +93,12 @@ const CryptoDashboard = () => {
     
 const [lpPriceData, setLPPriceData] = useState(0);
 
+const [amountInEther, setAmountInEther] = useState('0')
+const [receiptStatus, setReceiptStatus] = useState(false)
+
+const { account, deactivate, activateBrowserWallet, library } = useEthers()
+const approvedRef = useRef(false);
+
     
     useEffect(() => {
       const fetchLPPriceData = async () => {
@@ -145,10 +161,17 @@ const [lpPriceData, setLPPriceData] = useState(0);
 
    const { sendTransaction } = useSendTransaction()
 
-  //  const handleClick = () => {
-  //   setDisabled(true)
-  //   sendTransaction({ to: address, value: utils.parseEther(amount) })
-  // }
+   const fromTokenContract = new Contract("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", BundleToken)
+   const { state, send: sendApprove } = useContractFunction(fromTokenContract, 'approve',  { transactionName: 'approve' });
+   
+   
+   const handleApprove = () => {  
+   
+     const amountInWei = ethers.utils.parseEther(amountInEther); 
+       sendApprove("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", amountInWei.toString())
+       setApproval(true)
+      approvedRef.current = true;
+      };
     return (
        <main>
          <Grid container spacing={5} sx={{mt: 5, p: 3}}>
@@ -243,7 +266,20 @@ const [lpPriceData, setLPPriceData] = useState(0);
          </Box>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+        <Box sx={{width: "100%", height: "100%"}}>
+         <Stack spacing={5}>
+         {/* <Paper > */}
+         <TextField sx={{height: 60, width: "100%"}}  id="outlined-basic" label="Amount" variant="outlined" 
+                      value={amountInEther}
+                      onChange={(e) => setAmountInEther(e.target.value)}
+         />
+         {/* </Paper> */}
+
+          <Button variant="contained" onClick={handleApprove}>
+            Redeem Tokens
+          </Button>
+      </Stack>
+         </Box>
         </TabPanel>
        
       </SwipeableViews>
