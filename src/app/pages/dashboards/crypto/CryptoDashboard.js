@@ -300,7 +300,7 @@ const signer = useSigner()
               }
           }}
           >
-            Redeem Tokens
+             {approvedRef? 'Redeem' : 'Approve'} 
           </Button>
       </Stack>
          </Box>
