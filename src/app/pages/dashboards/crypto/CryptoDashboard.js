@@ -35,7 +35,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-
+import {  useSendTransaction} from '@usedapp/core'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 
@@ -169,7 +169,6 @@ const approvedRef = useRef(false);
    
      const amountInWei = ethers.utils.parseEther(amountInEther); 
        sendApprove("0x4987131473ccC84FEdbf22Ab383b6188D206cc9C", amountInWei.toString())
-       setApproval(true)
       approvedRef.current = true;
       };
     return (
